@@ -1,6 +1,8 @@
 import { setupWorker } from "msw/browser";
 import { authHandlers } from "./authHandlers";
-import { http, HttpResponse } from "msw";
+import { accessControlHandlers } from "./accessControlHandlers";
 //npx msw init public
 
-export const worker = setupWorker(...authHandlers);
+const handlers = [...authHandlers, ...accessControlHandlers];
+
+export const worker = setupWorker(...handlers);
